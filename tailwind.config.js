@@ -1,100 +1,84 @@
 
-  javascript
   /** @type {import('tailwindcss').Config} */
   module.exports = {
-    darkMode: ["class"], // Or 'media' if you prefer OS-level dark mode
     content: [
-      './pages/**/*.{ts,tsx}',
-      './components/**/*.{ts,tsx}',
-      './app/**/*.{ts,tsx}',
-      './src/**/*.{ts,tsx}', // Make sure this includes your components directory
+      "./index.html",
+      "./src/**/*.{js,ts,jsx,tsx}",
+      // Add paths to all files that use Tailwind classes
+      "./src/pages/**/*.{js,ts,jsx,tsx}",
+      "./src/components/**/*.{js,ts,jsx,tsx}",
     ],
-    prefix: "",
     theme: {
-      container: {
-        center: true,
-        padding: "2rem",
-        screens: {
-          "2xl": "1400px",
-        },
-      },
       extend: {
         colors: {
-          border: "hsl(var(--border))",
-          input: "hsl(var(--input))",
-          ring: "hsl(var(--ring))",
-          background: "hsl(var(--background))", // Should map to light/default background
-          foreground: "hsl(var(--foreground))", // Should map to light/default text
+          'primary-deep-purple': '#4A148C', // Primary Deep Purple
+          'secondary-glowing-purple': '#D500F9', // Secondary Glowing Purple
+          'accent-dark-blue': '#000051', // Accent Dark Blue
+          'neutral-dark': '#263238', // Neutral Dark
+          'neutral-medium': '#B388FF', // Neutral Medium (Adjusted from spec for better contrast/use)
+          'neutral-light': '#ECEFF1', // Neutral Light
+          // Add shades if needed, e.g., primary-deep-purple/90
+          // Add semantic names based on Shadcn UI conventions if used
+          background: '#FFFFFF', // Example background
+          foreground: '#263238', // Example foreground text
           primary: {
-            DEFAULT: "#4A148C", // Primary Purple
-            foreground: "#ECEFF1", // Text on primary (Neutral BG)
+            DEFAULT: '#4A148C',
+            foreground: '#FFFFFF', // Text on primary bg
           },
           secondary: {
-            DEFAULT: "#D500F9", // Secondary Magenta/Pink
-            foreground: "#263238", // Text on secondary (Neutral Dark) - Ensure contrast
-          },
-          destructive: {
-            DEFAULT: "hsl(var(--destructive))",
-            foreground: "hsl(var(--destructive-foreground))",
+            DEFAULT: '#D500F9',
+            foreground: '#FFFFFF', // Text on secondary bg (adjust if needed)
           },
           muted: {
-            DEFAULT: "hsl(var(--muted))",
-            foreground: "hsl(var(--muted-foreground))",
+             DEFAULT: '#ECEFF1', // Neutral Light as muted background
+             foreground: '#263238', // Text on muted
           },
           accent: {
-            DEFAULT: "#000051", // Accent Dark Blue
-            foreground: "#ECEFF1", // Text on accent (Neutral BG)
+             DEFAULT: '#B388FF', // Neutral Medium as accent
+             foreground: '#000051', // Text on accent
           },
-          popover: {
-            DEFAULT: "hsl(var(--popover))",
-            foreground: "hsl(var(--popover-foreground))",
-          },
-          card: {
-            DEFAULT: "hsl(var(--card))",
-            foreground: "hsl(var(--card-foreground))",
-          },
-          // Custom additions based on theme spec
-          'neutral-dark': '#263238', // Dark Blue-Gray
-          'neutral-light': '#B388FF', // Light Purple/Lavender
-          'neutral-bg': '#ECEFF1',   // Very Light Gray/Off-white
+          // ... other Shadcn UI color roles if needed (destructive, card, etc.)
+          border: '#ECEFF1', // Example border color
+          input: '#B388FF', // Example input border
+          ring: '#D500F9', // Example focus ring color
         },
-        borderRadius: {
-          lg: "var(--radius)",
-          md: "calc(var(--radius) - 2px)",
-          sm: "calc(var(--radius) - 4px)",
+        fontFamily: {
+          poppins: ['Poppins', 'sans-serif'],
+          roboto: ['Roboto', 'sans-serif'],
         },
+        // Example animation for pulsing glow - can be triggered with GSAP or utilities
         keyframes: {
-          "accordion-down": {
-            from: { height: "0" },
-            to: { height: "var(--radix-accordion-content-height)" },
+          pulseGlow: {
+            '0%, 100%': { boxShadow: '0 0 5px 2px rgba(213, 0, 249, 0.4)', opacity: 0.7 },
+            '50%': { boxShadow: '0 0 20px 8px rgba(213, 0, 249, 0.7)', opacity: 1 },
           },
-          "accordion-up": {
-            from: { height: "var(--radix-accordion-content-height)" },
-            to: { height: "0" },
-          },
-          // Add potential glow or pulse animations if needed
-           'glow': {
-             '0%, 100%': { boxShadow: '0 0 5px theme(colors.secondary.DEFAULT)' },
-             '50%': { boxShadow: '0 0 20px theme(colors.secondary.DEFAULT)' },
-           },
-           'subtle-pulse': {
-             '0%, 100%': { transform: 'scale(1)', opacity: 1 },
-             '50%': { transform: 'scale(1.03)', opacity: 0.9 },
-           }
         },
         animation: {
-          "accordion-down": "accordion-down 0.2s ease-out",
-          "accordion-up": "accordion-up 0.2s ease-out",
-          "glow": "glow 2s ease-in-out infinite",
-          "subtle-pulse": "subtle-pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+          'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         },
-         fontFamily: {
-           heading: ['Poppins', 'sans-serif'], // Poppins for headings
-           body: ['Roboto', 'sans-serif'],     // Roboto for body text
+      },
+      // Define container settings if needed, or rely on default
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '1rem',
+          sm: '2rem',
+          lg: '4rem',
+          xl: '5rem',
+        },
+         screens: {
+           sm: '640px',
+           md: '768px',
+           lg: '1024px',
+           xl: '1280px',
+           '2xl': '1536px',
          },
       },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [
+       require('@tailwindcss/typography'), // If using typography plugin
+       require('@tailwindcss/forms'), // If using forms plugin
+       require('tailwindcss-animate'), // For Shadcn UI animations
+    ],
   }
-  
   
