@@ -5,45 +5,84 @@
   @tailwind components;
   @tailwind utilities;
 
-  body {
-    @apply bg-background-main text-text-light; /* Default background and text */
-    font-family: 'Roboto', sans-serif; /* Default font */
+  @layer base {
+    :root {
+      /* Map your theme colors to CSS variables used by Shadcn/ui */
+      /* Light mode variables - Adjust HSL values based on your hex codes */
+      --background: 0 0% 100%; /* #FFFFFF */
+      --foreground: 200 13% 18%; /* #263238 */
+
+      --card: 0 0% 100%; /* #FFFFFF */
+      --card-foreground: 200 13% 18%; /* #263238 */
+
+      --popover: 0 0% 100%;
+      --popover-foreground: 200 13% 18%;
+
+      --primary: 266 79% 31%; /* #4A148C */
+      --primary-foreground: 0 0% 100%; /* White */
+
+      --secondary: 291 100% 49%; /* #D500F9 */
+      --secondary-foreground: 0 0% 100%; /* White */
+
+      --muted: 256 100% 76%; /* #B388FF */
+      --muted-foreground: 200 13% 40%; /* Slightly lighter than foreground */
+
+      --accent: 240 100% 16%; /* #000051 */
+      --accent-foreground: 0 0% 98%; /* Near white for contrast */
+
+      --destructive: 0 84% 60%; /* Example Red */
+      --destructive-foreground: 0 0% 98%;
+
+      --border: 200 17% 87%; /* #CFD8DC */
+      --input: 200 17% 87%; /* #CFD8DC */
+      --ring: 266 79% 31%; /* #4A148C - Focus ring */
+
+      --radius: 0.75rem; /* Example border radius */
+    }
+
+    .dark {
+      /* Define dark mode variables if needed */
+      /* Example:
+      --background: 200 13% 10%;
+      --foreground: 0 0% 98%;
+      --card: 200 13% 12%;
+      --card-foreground: 0 0% 98%;
+      --popover: 200 13% 10%;
+      --popover-foreground: 0 0% 98%;
+      --primary: 266 70% 50%;
+      --primary-foreground: 0 0% 100%;
+      --secondary: 291 80% 60%;
+      --secondary-foreground: 0 0% 100%;
+      --muted: 256 50% 60%;
+      --muted-foreground: 200 10% 65%;
+      --accent: 240 60% 30%;
+      --accent-foreground: 0 0% 98%;
+      --destructive: 0 70% 50%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 200 10% 30%;
+      --input: 200 10% 30%;
+      --ring: 266 70% 50%;
+      */
+    }
   }
 
-  /* Style for react-spring animated elements if needed */
-  [style*="opacity: 0"] { /* Hide elements initially for JS animations */
-     /* opacity: 0; /* Handled by react-spring */
+  @layer base {
+    * {
+      @apply border-border;
+    }
+    body {
+      @apply bg-background text-foreground font-roboto;
+       /* Enable smooth scrolling */
+      scroll-behavior: smooth;
+       /* Better font rendering */
+       -webkit-font-smoothing: antialiased;
+       -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4, h5, h6 {
+       @apply font-poppins font-semibold;
+    }
   }
 
   /* Add any other global styles or overrides here */
-  .container {
-      /* You can define custom container widths if needed */
-      /* max-width: 1280px; */
-  }
 
-  /* Accessibility focus styles */
-  *:focus-visible {
-    outline: 2px solid theme('colors.secondary.main');
-    outline-offset: 2px;
-    border-radius: 2px; /* Optional: adds rounded corners to the outline */
-  }
-
-  /* Override for specific elements if default outline is not desired */
-  button:focus-visible, a:focus-visible {
-    /* Custom focus styles might be handled by Tailwind's focus-visible:ring utilities */
-  }
-
-  /* Reduced motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-    /* You might need to specifically target react-spring animated elements */
-    /* .animated-element { transition: none !important; } */
-  }
   
