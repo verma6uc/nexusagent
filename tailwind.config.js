@@ -1,99 +1,66 @@
 
   /** @type {import('tailwindcss').Config} */
-  const defaultTheme = require('tailwindcss/defaultTheme');
-
-  module.exports = {
-    darkMode: ["class"],
+  export default {
     content: [
-      './pages/**/*.{ts,tsx}',
-      './components/**/*.{ts,tsx}',
-      './app/**/*.{ts,tsx}',
-      './src/**/*.{ts,tsx}',
-      './index.html',
+      "./index.html",
+      "./src/**/*.{js,ts,jsx,tsx}",
     ],
-    prefix: "",
     theme: {
-      container: {
-        center: true,
-        padding: "2rem",
-        screens: {
-          "2xl": "1400px",
-        },
-      },
       extend: {
         colors: {
-          border: "hsl(var(--border))",
-          input: "hsl(var(--input))",
-          ring: "hsl(var(--ring))",
-          background: "hsl(var(--background))",
-          foreground: "hsl(var(--foreground))",
+          // Theme Colors based on spec
           primary: {
-            DEFAULT: "hsl(var(--primary))",
-            foreground: "hsl(var(--primary-foreground))",
+            main: '#4A148C', // Purple - Sophisticated, Magician
+            light: '#7C43BD',
+            dark: '#1A0033',
           },
           secondary: {
-            DEFAULT: "hsl(var(--secondary))",
-            foreground: "hsl(var(--secondary-foreground))",
-          },
-          destructive: {
-            DEFAULT: "hsl(var(--destructive))",
-            foreground: "hsl(var(--destructive-foreground))",
-          },
-          muted: {
-            DEFAULT: "hsl(var(--muted))",
-            foreground: "hsl(var(--muted-foreground))",
+            main: '#D500F9', // Magenta - Energetic, Magical Accent
+            light: '#E060FF',
+            dark: '#9E00B8',
           },
           accent: {
-            DEFAULT: "hsl(var(--accent))",
-            foreground: "hsl(var(--accent-foreground))",
+            main: '#000051', // Deep Blue - Forward-looking, Stable
+            light: '#3F51B5', // Example light shade
+            dark: '#000029', // Example dark shade
           },
-          popover: {
-            DEFAULT: "hsl(var(--popover))",
-            foreground: "hsl(var(--popover-foreground))",
+          neutral: {
+            dark: '#263238', // Dark Gray/Blue - Text, Backgrounds
+            medium: '#546E7A', // Medium Gray
+            light: '#B388FF', // Light Purple/Gray - Subtle Backgrounds, Highlights
+            lighter: '#ECEFF1', // Very Light Gray/Off-white - Backgrounds
           },
-          card: {
-            DEFAULT: "hsl(var(--card))",
-            foreground: "hsl(var(--card-foreground))",
+          background: {
+             main: '#1A1A2E', // Dark background for contrast, fits cosmic/magic theme
+             light: '#2A2A4E',
+             dark: '#0F0F1A',
           },
-          'neutral-dark': 'hsl(var(--neutral-dark))',
-          'neutral-medium': 'hsl(var(--neutral-medium))',
-          'neutral-light': 'hsl(var(--neutral-light))',
-        },
-        borderRadius: {
-          lg: "var(--radius)",
-          md: "calc(var(--radius) - 2px)",
-          sm: "calc(var(--radius) - 4px)",
-        },
-        keyframes: {
-          "accordion-down": {
-            from: { height: "0" },
-            to: { height: "var(--radix-accordion-content-height)" },
-          },
-          "accordion-up": {
-            from: { height: "var(--radix-accordion-content-height)" },
-            to: { height: "0" },
-          },
-          "pulse-glow": {
-            '0%, 100%': { opacity: 1, boxShadow: '0 0 5px hsl(var(--secondary))' },
-            '50%': { opacity: 0.8, boxShadow: '0 0 20px 10px hsl(var(--secondary) / 0.5)' },
-          },
-          "fade-in": {
-            '0%': { opacity: '0' },
-            '100%': { opacity: '1' },
-          },
-        },
-        animation: {
-          "accordion-down": "accordion-down 0.2s ease-out",
-          "accordion-up": "accordion-up 0.2s ease-out",
-          "pulse-glow": "pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-          "fade-in": "fade-in 0.5s ease-out forwards",
+          text: {
+             light: '#ECEFF1', // Light text for dark backgrounds
+             dark: '#263238', // Dark text for light backgrounds
+             medium: '#B0BEC5', // Medium contrast text
+             primary: '#4A148C', // Use primary color for text highlights
+             accent: '#D500F9', // Use secondary/accent for specific text highlights
+             primary_accent: '#B388FF', // Use neutral-light for some headings or highlights
+          }
         },
         fontFamily: {
-          sans: ['Roboto', ...defaultTheme.fontFamily.sans],
-          heading: ['Poppins', ...defaultTheme.fontFamily.sans],
+          poppins: ['Poppins', 'sans-serif'], // For headlines
+          roboto: ['Roboto', 'sans-serif'], // For body text
+        },
+        // Add subtle animations or gradients for the "magic" theme if desired
+        // Example: Keyframes for floating effect
+        keyframes: {
+          float: {
+            '0%, 100%': { transform: 'translateY(0)' },
+            '50%': { transform: 'translateY(-5px)' },
+          }
+        },
+        animation: {
+          float: 'float 3s ease-in-out infinite',
         },
       },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [],
   }
   
