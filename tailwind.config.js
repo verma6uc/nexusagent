@@ -1,16 +1,15 @@
 
+  javascript
   /** @type {import('tailwindcss').Config} */
-  const defaultTheme = require('tailwindcss/defaultTheme');
-
   module.exports = {
-    darkMode: ["class"], // Or 'media' based on preference
+    darkMode: ["class"], // Or 'media' if you prefer OS-level dark mode
     content: [
       './pages/**/*.{ts,tsx}',
       './components/**/*.{ts,tsx}',
       './app/**/*.{ts,tsx}',
-      './src/**/*.{ts,tsx}', // Make sure src is included
-      './index.html',
+      './src/**/*.{ts,tsx}', // Make sure this includes your components directory
     ],
+    prefix: "",
     theme: {
       container: {
         center: true,
@@ -21,77 +20,81 @@
       },
       extend: {
         colors: {
-          // NexusAgent Theme Colors (as defined in project details)
+          border: "hsl(var(--border))",
+          input: "hsl(var(--input))",
+          ring: "hsl(var(--ring))",
+          background: "hsl(var(--background))", // Should map to light/default background
+          foreground: "hsl(var(--foreground))", // Should map to light/default text
           primary: {
-            DEFAULT: '#4A148C', // Deep Purple
-            foreground: '#ECEFF1', // Light text on primary
+            DEFAULT: "#4A148C", // Primary Purple
+            foreground: "#ECEFF1", // Text on primary (Neutral BG)
           },
           secondary: {
-            DEFAULT: '#D500F9', // Bright Magenta/Purple
-            foreground: '#FFFFFF', // White text on secondary
-          },
-          accent: {
-            DEFAULT: '#000051', // Deep Navy Blue
-            foreground: '#ECEFF1', // Light text on accent
+            DEFAULT: "#D500F9", // Secondary Magenta/Pink
+            foreground: "#263238", // Text on secondary (Neutral Dark) - Ensure contrast
           },
           destructive: {
-            DEFAULT: '#F44336', // Red for destructive actions
-            foreground: '#FFFFFF',
+            DEFAULT: "hsl(var(--destructive))",
+            foreground: "hsl(var(--destructive-foreground))",
           },
           muted: {
-            DEFAULT: '#B388FF', // Lighter Purple/Lavender (for subtle elements)
-            foreground: '#263238', // Dark text on muted
+            DEFAULT: "hsl(var(--muted))",
+            foreground: "hsl(var(--muted-foreground))",
           },
-          background: '#ECEFF1', // Light Gray/Off-white background
-          foreground: '#263238', // Dark Gray/Blue text
-          card: '#FFFFFF', // White card background
-          'card-foreground': '#263238', // Text on cards
-          popover: '#FFFFFF',
-          'popover-foreground': '#263238',
-          border: '#B388FF', // Use muted color for borders
-          input: '#B388FF', // Use muted color for input borders
-          ring: '#D500F9', // Use secondary color for focus rings
-
-          // Neutrals (Derived for text/bg variations)
-          'neutral-50': '#f8fafc', // Example light neutral
-          'neutral-100': '#ECEFF1', // Provided neutral
-          'neutral-200': '#e2e8f0',
-          'neutral-300': '#B388FF', // Provided neutral
-          'neutral-400': '#94a3b8',
-          'neutral-500': '#64748b',
-          'neutral-600': '#475569',
-          'neutral-700': '#334155',
-          'neutral-800': '#263238', // Provided neutral
-          'neutral-900': '#1e293b',
-          'neutral-950': '#0f172a', // Example dark neutral
+          accent: {
+            DEFAULT: "#000051", // Accent Dark Blue
+            foreground: "#ECEFF1", // Text on accent (Neutral BG)
+          },
+          popover: {
+            DEFAULT: "hsl(var(--popover))",
+            foreground: "hsl(var(--popover-foreground))",
+          },
+          card: {
+            DEFAULT: "hsl(var(--card))",
+            foreground: "hsl(var(--card-foreground))",
+          },
+          // Custom additions based on theme spec
+          'neutral-dark': '#263238', // Dark Blue-Gray
+          'neutral-light': '#B388FF', // Light Purple/Lavender
+          'neutral-bg': '#ECEFF1',   // Very Light Gray/Off-white
         },
         borderRadius: {
           lg: "var(--radius)",
           md: "calc(var(--radius) - 2px)",
           sm: "calc(var(--radius) - 4px)",
         },
-        fontFamily: {
-          // Define Poppins and Roboto
-          poppins: ['Poppins', ...defaultTheme.fontFamily.sans],
-          roboto: ['Roboto', ...defaultTheme.fontFamily.sans],
-        },
         keyframes: {
           "accordion-down": {
-            from: { height: 0 },
+            from: { height: "0" },
             to: { height: "var(--radix-accordion-content-height)" },
           },
           "accordion-up": {
             from: { height: "var(--radix-accordion-content-height)" },
-            to: { height: 0 },
+            to: { height: "0" },
           },
-          // Add other custom animations if needed
+          // Add potential glow or pulse animations if needed
+           'glow': {
+             '0%, 100%': { boxShadow: '0 0 5px theme(colors.secondary.DEFAULT)' },
+             '50%': { boxShadow: '0 0 20px theme(colors.secondary.DEFAULT)' },
+           },
+           'subtle-pulse': {
+             '0%, 100%': { transform: 'scale(1)', opacity: 1 },
+             '50%': { transform: 'scale(1.03)', opacity: 0.9 },
+           }
         },
         animation: {
           "accordion-down": "accordion-down 0.2s ease-out",
           "accordion-up": "accordion-up 0.2s ease-out",
+          "glow": "glow 2s ease-in-out infinite",
+          "subtle-pulse": "subtle-pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         },
+         fontFamily: {
+           heading: ['Poppins', 'sans-serif'], // Poppins for headings
+           body: ['Roboto', 'sans-serif'],     // Roboto for body text
+         },
       },
     },
-    plugins: [require("tailwindcss-animate")], // Ensure animate plugin is included
+    plugins: [require("tailwindcss-animate")],
   }
+  
   
