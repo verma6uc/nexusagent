@@ -1,0 +1,122 @@
+
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @layer base {
+    :root {
+      /* Color Palette (Light Theme - Default) */
+      --background: 210 20% 98%; /* neutral-light adjusted */
+      --foreground: 215 25% 27%; /* neutral-dark adjusted */
+
+      --card: 0 0% 100%;
+      --card-foreground: 215 25% 27%;
+
+      --popover: 0 0% 100%;
+      --popover-foreground: 215 25% 27%;
+
+      --primary: 274 70% 30%; /* #4A148C */
+      --primary-foreground: 0 0% 100%;
+
+      --secondary: 283 100% 49%; /* #D500F9 */
+      --secondary-foreground: 0 0% 100%;
+
+      --accent: 236 100% 16%; /* #000051 */
+      --accent-foreground: 0 0% 100%;
+
+      --destructive: 0 84% 60%; /* Example Red */
+      --destructive-foreground: 0 0% 100%;
+
+      --muted: 210 40% 96.1%;
+      --muted-foreground: 215 16% 47%;
+
+      --border: 214 32% 91%;
+      --input: 214 32% 91%;
+      --ring: 274 70% 50%; /* primary slightly lighter */
+
+      /* Neutral Shades */
+      --neutral-dark: 210 17% 20%; /* #263238 */
+      --neutral-medium: 262 100% 75%; /* #B388FF */
+      --neutral-light: 210 20% 94%; /* #ECEFF1 */
+
+      /* Border Radius */
+      --radius: 0.5rem;
+    }
+
+    .dark {
+      /* Color Palette (Dark Theme) */
+      --background: 210 17% 20%; /* neutral-dark */
+      --foreground: 210 20% 96%; /* neutral-light adjusted */
+
+      --card: 215 25% 15%; /* Darker card */
+      --card-foreground: 210 20% 96%;
+
+      --popover: 215 25% 15%;
+      --popover-foreground: 210 20% 96%;
+
+      --primary: 274 70% 50%; /* Lighter Primary for dark mode */
+      --primary-foreground: 0 0% 100%;
+
+      --secondary: 283 100% 65%; /* Lighter Secondary */
+      --secondary-foreground: 0 0% 100%;
+
+      --accent: 236 100% 70%; /* Lighter Accent */
+      --accent-foreground: 215 25% 15%;
+
+      --destructive: 0 70% 55%; /* Darker Red */
+      --destructive-foreground: 0 0% 100%;
+
+      --muted: 215 20% 25%;
+      --muted-foreground: 215 16% 65%;
+
+      --border: 215 20% 30%;
+      --input: 215 20% 30%;
+      --ring: 274 70% 60%; /* primary slightly lighter */
+
+      /* Neutral Shades remain the same absolute values */
+      /* --neutral-dark: 210 17% 20%; */
+      /* --neutral-medium: 262 100% 75%; */
+      /* --neutral-light: 210 20% 94%; */
+    }
+  }
+
+  @layer base {
+    * {
+      @apply border-border;
+    }
+    body {
+      @apply bg-background text-foreground font-sans antialiased;
+      min-height: 100vh;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    h1, h2, h3, h4, h5, h6 {
+      @apply font-heading font-medium tracking-tight;
+       /* Add generous spacing */
+      margin-bottom: theme('spacing.4');
+    }
+    h1 { @apply text-4xl lg:text-5xl; }
+    h2 { @apply text-3xl lg:text-4xl; }
+    h3 { @apply text-2xl lg:text-3xl; }
+    h4 { @apply text-xl lg:text-2xl; }
+    h5 { @apply text-lg lg:text-xl; }
+    h6 { @apply text-base lg:text-lg; }
+
+    /* Base link styles */
+    a {
+      @apply text-primary hover:text-primary/80 transition-colors;
+    }
+
+    /* Smooth transitions for interactive elements */
+    button, a, input[type="checkbox"], input[type="radio"] {
+      @apply transition-all duration-200 ease-in-out;
+    }
+  }
+
+  @layer components {
+    /* Add any global custom component base styles here if needed */
+    /* Example: A subtle background gradient */
+    .bg-gradient-subtle {
+       background-image: linear-gradient(120deg, hsl(var(--background)), hsl(var(--primary) / 0.05));
+    }
+  }
+  

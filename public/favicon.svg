@@ -1,0 +1,18 @@
+
+  <svg width="64" height="64" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#4A148C;stop-opacity:1" /> {/* Primary */}
+        <stop offset="100%" style="stop-color:#D500F9;stop-opacity:1" /> {/* Secondary */}
+      </linearGradient>
+      <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#000051;stop-opacity:0.8" /> {/* Accent */}
+        <stop offset="100%" style="stop-color:#D500F9;stop-opacity:0.5" /> {/* Secondary */}
+      </linearGradient>
+    </defs>
+    <path d="M50 0L93.3 25V75L50 100L6.7 75V25L50 0Z" fill="url(#grad1)"/>
+    <path d="M50 15L81.65 32.5V67.5L50 85L18.35 67.5V32.5L50 15Z" fill="url(#grad2)" />
+    <path d="M35 40 L50 30 L65 40 L65 60 L50 70 L35 60 Z" fill="#FFFFFF" fillOpacity="0.7"/>
+    <circle cx="50" cy="50" r="8" fill="#FFFFFF" fillOpacity="0.9"/>
+  </svg>
+  
